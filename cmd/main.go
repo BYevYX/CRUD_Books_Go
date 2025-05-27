@@ -1,27 +1,10 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-
-	"github.com/jackc/pgx/v5/pgxpool"
+	"CRUD_BOOKS/DB"
 )
 
 func main() {
-	dbpool, err := pgxpool.New(context.Background(), os.Getenv("DATABASE_URL"))
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Unable to create connection pool: %v\n", err)
-		os.Exit(1)
-	}
+	dbpool := db.InitDBPool()
 	defer dbpool.Close()
-
-	var greeting string
-	err = dbpool.QueryRow(context.Background(), "select 'Hello, world!'").Scan(&greeting)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
-		os.Exit(1)
-	}
-
-	fmt.Println(greeting)
 }
