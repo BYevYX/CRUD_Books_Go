@@ -1,6 +1,5 @@
 package db
 
-
 import (
 	"context"
 	"fmt"
@@ -18,6 +17,6 @@ func InitDBPool() *pgxpool.Pool {
 		os.Exit(1)
 	}
 
-	DBpool = dbpool;
+	DBpool = dbpool
 	return dbpool
 }

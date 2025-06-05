@@ -1,7 +1,7 @@
 package main
 
 import (
-	"CRUD_BOOKS/DB"
+	db "CRUD_BOOKS/DB"
 	"CRUD_BOOKS/middleware"
 	"CRUD_BOOKS/router"
 
@@ -14,6 +14,7 @@ func main() {
 
 	r := gin.Default()
 	r.Use(middleware.Logger())
+	r.Use(middleware.Cors())
 	router.RegisterRoutes(r)
 
 	r.Run(":8080")

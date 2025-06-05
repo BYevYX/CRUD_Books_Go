@@ -5,13 +5,19 @@ import (
 )
 
 func RegisterRoutes(r *gin.Engine) {
-	api := r.Group("/api/book")
+	book_api := r.Group("/api/book")
 	{
-		api.GET("/:id", GetBook)
-		api.POST("/", CreateBook)
-		api.DELETE("/:id", DeleteBook)
-		api.PUT("/:id", UpdateBook)
-
-		api.GET("/all", GetAllBooks)
+		book_api.GET("/:id", GetBook)
+		book_api.POST("/", CreateBook)
+		book_api.DELETE("/:id", DeleteBook)
+		book_api.PUT("/:id", UpdateBook)
+		book_api.GET("/all", GetAllBooks)
+	}
+	author_api := r.Group("/api/author")
+	{
+		author_api.GET("/:id", GetAuthor)
+		author_api.POST("/", RegisterAuthor)
+		author_api.PUT("/:id", UpdateAuthor)
+		author_api.GET("/all", GetAllAuthors)
 	}
 }
